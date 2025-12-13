@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from schemas.feedbackSchema import feedbackRequest, feedbackResponse
 from schemas.questSchema import questionRequest, questionResponse
+import Llama
 app = FastAPI()
 
 @app.get("/")
