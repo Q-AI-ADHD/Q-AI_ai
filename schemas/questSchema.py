@@ -6,4 +6,5 @@ class questionRequest(BaseModel):
     subjectdetail: str
     
 class questionResponse(BaseModel):
+    id: int
     question: str
