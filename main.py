@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from schemas.feedbackSchema import feedbackRequest, feedbackResponse
 from schemas.questSchema import questionRequest, questionResponse
-import Llama
+import sqlite3
 app = FastAPI()
 
 @app.get("/")
@@ -13,6 +13,5 @@ async def quest_create(req: questionRequest):
     return {"subject": req.subject, "level": req.level}
 
 @app.post("/api/qna/feedback", response_model=feedbackResponse)
-async def quest_feedback(req: feedbackRequest):
-    pass
-    # return feedbackResponse({'feedback': pass})
+async def qeust_feedback(req: feedbackRequest):
+    return {"qnaId": req.qnaId, "feedback": req.question, "updatedAt": req.answer}
