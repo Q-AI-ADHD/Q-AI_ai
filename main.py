@@ -8,9 +8,9 @@ from pathlib import Path
 app = FastAPI()
 
 llm = Llama(
-    model_path=r"C:\Users\pc\Desktop\최인규\건들면사망\q&ai\models\qwen2.5-7b-instruct-q8_0-00001-of-00003.gguf",
+    model_path="./models/qnaimodel-00001-of-00002.gguf",
     n_ctx=2048,
-    n_gpu_layers=0,
+    n_gpu_layers=24,
 )
 
 @app.get("/")
