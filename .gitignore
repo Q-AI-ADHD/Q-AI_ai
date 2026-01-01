@@ -4,3 +4,4 @@ utils/__pycache__/
 db/user.db
 models/*
 .env
+quests.db
