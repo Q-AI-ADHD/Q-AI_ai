@@ -1,31 +1,34 @@
-# - 제목 : feat(issue 번호): 기능명
-  ex) feat(17): pull request template 작성
-  (확인 후 지워주세요)
+# - feat(#4): 프롬프트 수정 및 엔드포인트 개발
+  - feature: 피드백 엔드포인트 마저 개발 | sqlite3 & sqlalchemy 추가
+  - fix: 프롬프트 수정 | 스키마 타입변경 | db ignore 추가
+  - deploy: Dockefile 배포준비
 
 ## 🔘Part
 
-- [x] FE
+- [ ] FE
+- [x] BE
+- [x] AI
 
   <br/>
 
 ## 🔎 작업 내용
 
-- 기능에서 어떤 부분이
+- 이슈에서 언급한 개선내용 추가
 
-- 구현되었는지 설명해주세요
+- 질문을 프롬프트로 이어주기 위한 sqlite 추가
 
   <br/>
 
 ## 🔧 앞으로의 과제
 
-- 내일 할 일을
+- 모델 출력 체크 후 프롬프트 수정
 
-- 적어주세요
+- 배포 후 오류 수정
 
   <br/>
 
 ## ➕ 이슈 링크
 
-- [레포 이름 #이슈번호](이슈 주소)
+- [Q-AI-ai #4](https://github.com/Q-AI-ADHD/Q-AI_ai/issues/4)
 
 <br/>
