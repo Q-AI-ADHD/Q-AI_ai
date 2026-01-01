@@ -3,8 +3,14 @@ from schemas.feedbackSchema import feedbackRequest, feedbackResponse
 from schemas.questSchema import questionRequest, questionResponse
 from prompt.question_prompt import givemetheprompt
 from prompt.feedback_prompt import givethefeedback
+from db.db import engine, Base
+from db import models
+import sqlite3
+import sqlalchemy
 from llama_cpp import Llama
 from pathlib import Path
+
+Base.metadata.create_all(bind = engine)
 app = FastAPI()
 
 llm = Llama(
@@ -29,5 +35,8 @@ async def quest_create(req: questionRequest):
 
 @app.post("/ai/qna/feedback", response_model=feedbackResponse)
 async def quest_feedback(req: feedbackRequest):
-    pass
-    # return feedbackResponse({'feedback': pass})
+    prompt = givethefeedback(req.qnaId, req.question, req.answer)
+    out = llm(prompt, max_tokens = 756, temperature = 0.4, stop = ['\n'])
+    feedback = out['choices'][0]['text'].strip()
+    print(req.qnaId, req.question, req.answer)
+    print(feedback)
