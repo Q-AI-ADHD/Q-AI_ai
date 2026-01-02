@@ -1,3 +1,0 @@
-{
-  "question": "\"\"\"\n\n        # 백엔드 네트워크 관련 질문\n        return \"개발하신 프로젝트에서 사용한 네트워크 관련 기술이나 프레임워크에 대해 설명해 주시겠습니까?\"\n\n\nclass FrontendInterviewQuestionGenerator(QuestionGenerator):\n    \"\"\"\n    Frontend 면접 질문 생성을 위한 클래스입니다.\n    이 클래스는 면접 질문을 생성하고, 면접자의 답변을 평가하는 역할을 합니다.\n    \"\"\"\n\n    def generate_question(self):\n        \"\"\"\n        면접 질문을 생성합니다.\n        \"\"\"\n        # 질문 난이도 하 || 스택 프론트엔드 || 세부분야 웹 개발\n        return \"현재 사용하고 있는 프레임워크나 라이브러리에 대해 설명해 주시겠습니까?\"\n\n\nclass BackendInterviewQuestionGenerator(QuestionGenerator):\n    \"\"\"\n    Backend 면접 질문 생성을 위한 클래스입니다.\n    이 클래스는 면접 질문을 생성하고, 면접자의 답변을 평가하는 역할을 합니다.\n    \"\"\"\n\n    def generate_question(self):\n        \"\"\"\n        면접 질문을 생성합니다.\n        \"\"\"\n        # 질문 난"
-}
