@@ -5,7 +5,7 @@ from prompt.question_prompt import givemetheprompt
 from prompt.feedback_prompt import givethefeedback
 from dbs.db import engine, Base
 from dbs import models
-from dbs.crud import save_quests
+from utils.crud import save_quests
 import sqlite3
 import sqlalchemy
 from llama_cpp import Llama
@@ -35,7 +35,7 @@ async def quest_create(req: questionRequest):
     print(quest)
     return questionResponse(id = qnaid, question = quest)
 
-from dbs.crud import get_question
+from utils.crud import get_question
 @app.post("/ai/qna/feedback", response_model=feedbackResponse)
 async def quest_feedback(req: feedbackRequest):
     quest = get_question(req.qnaId)
