@@ -27,7 +27,7 @@ def health():
 @app.post("/ai/qna/question", response_model = questionResponse)
 async def quest_create(req: questionRequest):
     prompt = givemetheprompt(req.subject,req.level,req.subjectdetail)
-    out = llm(prompt, max_tokens= 256, temperature = 0.6, stop= ['\n'])
+    out = llm(prompt, max_tokens= 256, temperature = 0.6, stop = ['<END>'])
     
     quest = out['choices'][0]['text'].strip()
     qnaid = save_quests(req.subject, req.level, quest)
