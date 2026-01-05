@@ -39,13 +39,13 @@ from utils.crud import get_question
 @app.post("/ai/qna/feedback", response_model=feedbackResponse)
 async def quest_feedback(req: feedbackRequest):
     quest = get_question(req.qnaId)
-    if not quest: raise HTTPException(status_code = 404, detail = "question not found")
+    if not quest:
+        raise HTTPException(status_code=404, detail="qnaID does not correct or does not exist")
+    question_text = quest["question"]
+    prompt = givethefeedback(req.qnaId, question_text, req.answer)
+    out = llm(prompt, max_tokens=756, temperature=0.4, stop=["<END>"])
 
-    prompt = givethefeedback(req.qnaId, req.question, req.answer)
-    out = llm(prompt, max_tokens = 756, temperature = 0.4, stop = ['\n'])
-    feedback = out['choices'][0]['text'].strip()
-    
-    #디버깅
-    print(req.qnaId, req.question, req.answer)
+    feedback = out["choices"][0]["text"].strip()
+    print(req.qnaId, question_text, req.answer)
     print(feedback)
-    return feedbackResponse(feedback = feedback)
+    return feedbackResponse(feedback=feedback)
