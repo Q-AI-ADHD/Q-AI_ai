@@ -3,15 +3,8 @@ from schemas.feedbackSchema import feedbackRequest, feedbackResponse
 from schemas.questSchema import questionRequest, questionResponse
 from prompt.question_prompt import givemetheprompt
 from prompt.feedback_prompt import givethefeedback
-from dbs.db import engine, Base
-from dbs import models
-from utils.crud import save_quests
-import sqlite3
-import sqlalchemy
 from llama_cpp import Llama
 from pathlib import Path
-
-Base.metadata.create_all(bind = engine)
 app = FastAPI()
 
 llm = Llama(
@@ -30,22 +23,16 @@ async def quest_create(req: questionRequest):
     out = llm(prompt, max_tokens= 256, temperature = 0.6, stop = ['<END>'])
     
     quest = out['choices'][0]['text'].strip()
-    qnaid = save_quests(req.subject, req.level, quest)
     print(req.subject, req.level, req.subjectdetail)
     print(quest)
-    return questionResponse(id = qnaid, question = quest)
+    return questionResponse(question = quest)
 
-from utils.crud import get_question
 @app.post("/ai/qna/feedback", response_model=feedbackResponse)
 async def quest_feedback(req: feedbackRequest):
-    quest = get_question(req.qnaId)
-    if not quest:
-        raise HTTPException(status_code=404, detail="qnaID does not correct or does not exist")
-    question_text = quest["question"]
-    prompt = givethefeedback(req.qnaId, question_text, req.answer)
+    prompt = givethefeedback(req.qnaId, req.question, req.answer)
     out = llm(prompt, max_tokens=756, temperature=0.4, stop=["<END>"])
 
     feedback = out["choices"][0]["text"].strip()
-    print(req.qnaId, question_text, req.answer)
+    print(req.qnaId, req.question, req.answer)
     print(feedback)
     return feedbackResponse(feedback=feedback)
