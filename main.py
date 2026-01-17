@@ -8,7 +8,7 @@ from pathlib import Path
 app = FastAPI()
 
 llm = Llama(
-    model_path="./models/qnaimodel-00001-of-00002.gguf",
+    model_path="./models/qnaimodel-00001-of-00003.gguf",
     n_ctx=2048,
     n_gpu_layers=24,
 )
@@ -29,10 +29,10 @@ async def quest_create(req: questionRequest):
 
 @app.post("/ai/qna/feedback", response_model=feedbackResponse)
 async def quest_feedback(req: feedbackRequest):
-    prompt = givethefeedback(req.qnaId, req.question, req.answer)
+    prompt = givethefeedback(req.question, req.answer)
     out = llm(prompt, max_tokens=756, temperature=0.4, stop=["<END>"])
 
     feedback = out["choices"][0]["text"].strip()
-    print(req.qnaId, req.question, req.answer)
+    print(req.question, req.answer)
     print(feedback)
     return feedbackResponse(feedback=feedback)
