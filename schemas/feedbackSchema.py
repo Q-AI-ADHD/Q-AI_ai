@@ -1,10 +1,8 @@
 from pydantic import BaseModel
-from typing import Optional
 
-class questionRequest(BaseModel):
-    subject: str
-    level: str
-    subjectdetail: str
-    
-class questionResponse(BaseModel):
+class feedbackRequest(BaseModel):
     question: str
+    answer: str
+
+class feedbackResponse(BaseModel):
+    feedback: str

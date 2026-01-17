@@ -7,5 +7,4 @@ class questionRequest(BaseModel):
     subjectdetail: str
     
 class questionResponse(BaseModel):
-    id: Optional[int] = None
     question: str
