@@ -30,7 +30,7 @@ async def quest_create(req: questionRequest):
 @app.post("/ai/qna/feedback", response_model=feedbackResponse)
 async def quest_feedback(req: feedbackRequest):
     prompt = givethefeedback(req.question, req.answer)
-    out = llm(prompt, max_tokens=756, temperature=0.4, stop=["<END>"])
+    out = llm(prompt, max_tokens=756, temperature=0.4, stop = ['<END>'])
 
     feedback = out["choices"][0]["text"].strip()
     print(req.question, req.answer)
