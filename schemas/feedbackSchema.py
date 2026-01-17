@@ -1,9 +1,10 @@
 from pydantic import BaseModel
+from typing import Optional
 
-class feedbackRequest(BaseModel):
-    qnaId: int
+class questionRequest(BaseModel):
+    subject: str
+    level: str
+    subjectdetail: str
+    
+class questionResponse(BaseModel):
     question: str
-    answer: str
-
-class feedbackResponse(BaseModel):
-    feedback: str
